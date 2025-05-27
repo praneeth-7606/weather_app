@@ -47,7 +47,7 @@ export const WeatherProvider = ({ children }) => {
     
     if (weather && city) {
       interval = setInterval(() => {
-        console.log('🔄 Auto-refreshing weather data...');
+        console.log('Auto-refreshing weather data...');
         fetchWeatherData(city);
       }, 30000); // 30 seconds
     }
@@ -86,7 +86,7 @@ export const WeatherProvider = ({ children }) => {
     try {
       // Fetch current weather
       const weatherUrl = `${BASE_URL}/weather?q=${encodeURIComponent(cityName)}&appid=${API_KEY}&units=metric`;
-      console.log('🌐 Fetching weather for:', cityName);
+      console.log('Fetching weather for:', cityName);
       
       const weatherResponse = await fetchWithProxy(weatherUrl);
       
@@ -95,7 +95,7 @@ export const WeatherProvider = ({ children }) => {
       }
       
       const weatherData = await weatherResponse.json();
-      console.log('✅ Weather data received:', weatherData.name);
+      console.log('Weather data received:', weatherData.name);
 
       setWeather(weatherData);
       setCity(cityName);
@@ -137,7 +137,7 @@ export const WeatherProvider = ({ children }) => {
             .slice(0, 5);
           
           setForecast(processedForecast);
-          console.log('✅ 5-day forecast processed');
+          console.log('5-day forecast processed');
         }
       } catch (err) {
         console.warn('⚠️ Forecast fetch failed:', err.message);
@@ -145,7 +145,7 @@ export const WeatherProvider = ({ children }) => {
       }
 
     } catch (err) {
-      console.error('❌ Weather fetch error:', err);
+      console.error('Weather fetch error:', err);
       
       // User-friendly error messages
       let errorMessage = err.message;
