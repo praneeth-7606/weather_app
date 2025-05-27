@@ -2,14 +2,15 @@
 
 <div align="center">
 
-![Weather Dashboard](https://img.shields.io/badge/React-18.2.0-blue?style=for-the-badge&logo=react)
+![React](https://img.shields.io/badge/React-18.2.0-blue?style=for-the-badge&logo=react)
 ![OpenWeatherMap](https://img.shields.io/badge/OpenWeatherMap-API-orange?style=for-the-badge)
 ![CSS Modules](https://img.shields.io/badge/CSS-Modules-green?style=for-the-badge&logo=css3)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow?style=for-the-badge&logo=javascript)
+![Supabase](https://img.shields.io/badge/Supabase-Authentication-purple?style=for-the-badge&logo=supabase)
 
-**A modern, responsive weather dashboard built with React.js that provides real-time weather information with a beautiful glassmorphism UI design.**
+**A modern, responsive weather dashboard built with React.js featuring secure authentication and a beautiful glassmorphism UI design.**
 
-[Live Demo](#) • [Documentation](#documentation) • [ Quick Start](#quick-start) • [Screenshots](#screenshots)
+[Live Demo](https://weather-app-dun-gamma-77.vercel.app/) • [Documentation](#documentation) • [Quick Start](#-quick-start) • [Screenshots](#screenshots)
 
 </div>
 
@@ -17,26 +18,36 @@
 
 ## 📋 Table of Contents
 
-- [ Features](#-features)
-- [ Technologies Used](#️-technologies-used)
-- [ Quick Start](#-quick-start)
-- [ Project Structure](#-project-structure)
-- [ Configuration](#-configuration)
-- [ Usage](#-usage)
+- [Features](#-features)
+- [Technologies Used](#️-technologies-used)
+- [Quick Start](#-quick-start)
+- [Authentication Setup](#-authentication-setup)
+- [Project Structure](#-project-structure)
+- [Configuration](#-configuration)
+- [Usage](#-usage)
 - [Assignment Requirements](#-assignment-requirements)
-- [ API Integration](#-api-integration)
-- [ UI/UX Features](#-uiux-features)
-- [ Responsive Design](#-responsive-design)
-- [ Accessibility](#-accessibility)
-- [ Deployment](#-deployment)
-- [ Testing](#-testing)
-- [ Contributing](#-contributing)
-- [ License](#-license)
-- [ Author](#-author)
+- [API Integration](#-api-integration)
+- [UI/UX Features](#-uiux-features)
+- [Responsive Design](#-responsive-design)
+- [Accessibility](#-accessibility)
+- [Deployment](#-deployment)
+- [Testing](#-testing)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Author](#-author)
 
 ---
 
-##  Features
+## 🔑 Features
+
+### **Authentication Features**
+- **Secure User Registration** - Create an account with email and password
+- **Protected Dashboard** - Weather data only accessible to authenticated users
+- **Persistent Sessions** - Stay logged in across browser sessions
+- **User Profiles** - Save preferences and search history
+- **Password Reset** - Secure password recovery flow
+- **Error Handling** - Comprehensive authentication error management
+- **Logout Functionality** - End sessions securely
 
 ### **Core Weather Features**
 - **Real-time Weather Data** - Current conditions with auto-refresh every 30 seconds
@@ -53,6 +64,7 @@
 - **Quick Search** - One-click access to popular cities
 - **Error Handling** - User-friendly error messages and recovery options
 - **Offline Graceful Degradation** - Handles network issues elegantly
+- **Search History** - View and access your recent searches
 
 ### **Modern UI/UX**
 - **Glassmorphism Design** - Beautiful glass-like interface with backdrop blur effects
@@ -64,6 +76,11 @@
 ---
 
 ## 🛠️ Technologies Used
+
+### **Authentication & Backend**
+- **Supabase** - Authentication, user management, and database
+- **JWT Tokens** - Secure session management
+- **Row-Level Security** - Data isolation and protection
 
 ### **Frontend Framework**
 - **React 18.2.0** - Modern React with functional components and hooks
@@ -95,6 +112,7 @@
 - Node.js (v14.0.0 or higher)
 - npm or yarn package manager
 - OpenWeatherMap API key (free)
+- Supabase account (free)
 
 ### **Installation**
 
@@ -111,30 +129,65 @@
    yarn install
    ```
 
-3. **Set up environment variables**
-   ```bash
-   # Create .env file in the root directory
-   cp .env.example .env
-   
-   # Add your OpenWeatherMap API key
-   REACT_APP_WEATHER_API_KEY=your_api_key_here
-   ```
-
-4. **Get your free API key**
-   - Visit [OpenWeatherMap API](https://openweathermap.org/api)
-   - Create a free account
-   - Copy your API key from the dashboard
-
-5. **Start the development server**
+3. **Start the development server**
    ```bash
    npm start
    # or
    yarn start
    ```
 
-6. **Open your browser**
+4. **Open your browser**
    - Navigate to [http://localhost:3000](http://localhost:3000)
-   - Start exploring the weather dashboard!
+   - You'll see the login screen (authentication required)
+   - Create an account or sign in to access the weather dashboard
+
+---
+
+## 🔐 Authentication Setup
+
+### **Quick Supabase Setup (5 minutes)**
+
+1. **Create Supabase Project**
+   - Go to [supabase.com](https://supabase.com)
+   - Click "Start your project" 
+   - Sign up/Login with GitHub
+   - Click "New Project"
+   - Fill in:
+     - **Name**: `weather-dashboard`
+     - **Database Password**: (create strong password)
+     - **Region**: (choose closest to you)
+   - Click "Create new project"
+   - Wait 2-3 minutes for setup
+
+2. **Get API Keys**
+   - Go to **Settings → API** in Supabase dashboard
+   - Copy these values:
+     - **Project URL** (like: `https://abcdefgh.supabase.co`)
+     - **anon public key** (long string starting with `eyJ...`)
+
+3. **Update Environment Variables**
+   ```bash
+   # Create .env file in the root directory
+   cp .env.example .env
+   
+   # Add your API keys
+   REACT_APP_WEATHER_API_KEY=your_openweathermap_api_key_here
+   REACT_APP_SUPABASE_URL=https://your-project-id.supabase.co
+   REACT_APP_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+   ```
+
+4. **Set Up Database Tables**
+   - Go to **SQL Editor** in Supabase
+   - Copy contents from `supabase-setup.sql` in project files
+   - Paste and click **"Run"**
+   - Database ready!
+
+5. **Restart Application**
+   ```bash
+   npm start
+   ```
+
+> **Note**: For testing purposes, the application works without Supabase setup, displaying a fully functional login interface with validation. Real authentication requires completing the Supabase setup.
 
 ---
 
@@ -144,25 +197,36 @@
 weather-dashboard/
 ├── 📁 public/                     # Static assets
 │   ├── index.html                 # HTML template
-│   ├── favicon.ico               # App icon
-│   └── manifest.json             # PWA manifest
-├── 📁 src/                       # Source code
-│   ├── 📁 components/            # React components
-│   │   ├── SearchInput.js        # 🔍 City search functionality
-│   │   ├── WeatherDisplay.js     # 🌤️ Main weather information
-│   │   ├── ErrorMessage.js       # ❌ Error handling component
-│   │   └── WeatherIcon.js        # 🌟 Dynamic weather icons
-│   ├── 📁 context/               # State management
-│   │   └── WeatherContext.js     # 🌐 Global state with Context API
-│   ├── 📁 styles/                # Styling files
-│   │   ├── App.module.css        # 🎨 Main component styles
-│   │   └── index.css             # 🌍 Global styles
-│   ├── App.js                    # 🏠 Main application component
-│   └── index.js                  # 🚪 React entry point
-├── .env                          # 🔐 Environment variables
-├── .gitignore                    # 📝 Git ignore rules
-├── package.json                  # 📦 Dependencies and scripts
-└── README.md                     # 📖 Project documentation
+│   ├── favicon.ico                # App icon
+│   └── manifest.json              # PWA manifest
+├── 📁 src/                        # Source code
+│   ├── 📁 components/             # React components
+│   │   ├── 📁 auth/               # Authentication components
+│   │   │   ├── LoginPage.js       # 🔑 Full-screen login page
+│   │   │   ├── RegisterForm.js    # 📝 User registration form
+│   │   │   ├── LoginForm.js       # 🔓 User login form
+│   │   │   └── PasswordReset.js   # 🔄 Password reset component
+│   │   ├── SearchInput.js         # 🔍 City search functionality
+│   │   ├── WeatherDisplay.js      # 🌤️ Main weather information
+│   │   ├── ErrorMessage.js        # ❌ Error handling component
+│   │   └── WeatherIcon.js         # 🌟 Dynamic weather icons
+│   ├── 📁 context/                # State management
+│   │   ├── AuthContext.js         # 🔐 Authentication state
+│   │   └── WeatherContext.js      # 🌐 Weather state
+│   ├── 📁 config/                 # Configuration
+│   │   └── supabase.js            # 🔌 Supabase client setup
+│   ├── 📁 styles/                 # Styling files
+│   │   ├── App.module.css         # 🎨 Main component styles
+│   │   ├── Auth.module.css        # 🔒 Authentication styles
+│   │   └── index.css              # 🌍 Global styles
+│   ├── App.js                     # 🏠 Main application component
+│   └── index.js                   # 🚪 React entry point
+├── 📁 scripts/                    # Helper scripts
+│   └── supabase-setup.sql         # 📊 Database setup script
+├── .env                           # 🔐 Environment variables
+├── .gitignore                     # 📝 Git ignore rules
+├── package.json                   # 📦 Dependencies and scripts
+└── README.md                      # 📖 Project documentation
 ```
 
 ---
@@ -177,6 +241,10 @@ Create a `.env` file in the root directory:
 # OpenWeatherMap API Configuration
 REACT_APP_WEATHER_API_KEY=your_openweathermap_api_key_here
 
+# Supabase Authentication Configuration
+REACT_APP_SUPABASE_URL=https://your-project-id.supabase.co
+REACT_APP_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
 # Optional Configuration
 REACT_APP_WEATHER_BASE_URL=https://api.openweathermap.org/data/2.5
 REACT_APP_DEFAULT_CITY=London
@@ -185,18 +253,46 @@ REACT_APP_REFRESH_INTERVAL=30000
 
 ### **API Key Setup**
 
+#### OpenWeatherMap API
 1. **Sign up** at [OpenWeatherMap](https://openweathermap.org/api)
 2. **Generate** a free API key
 3. **Add** the key to your `.env` file
-4. **Restart** your development server
 
-> **Important**: Never commit your `.env` file to version control. The API key should remain private.
+#### Supabase Setup
+1. **Create project** at [Supabase](https://supabase.com)
+2. **Copy** Project URL and anon key
+3. **Add** these values to your `.env` file
+
+> **Important**: Never commit your `.env` file to version control. API keys should remain private.
 
 ---
 
-##  Usage
+## 📱 Usage
 
-### **Basic Operations**
+### **Authentication Flow**
+
+1. **Registration**
+   - Open the application to see the login screen
+   - Click "Create Account"
+   - Fill in your email and password
+   - Submit the form to create your account
+
+2. **Login**
+   - Enter your email and password
+   - Click "Sign In" to access the dashboard
+   - Toggle "Remember Me" to stay logged in
+
+3. **Password Reset**
+   - Click "Forgot Password" on the login screen
+   - Enter your email address
+   - Follow instructions sent to your email
+
+4. **Logout**
+   - Click your username in the top right corner
+   - Select "Logout" from the dropdown
+   - You'll be returned to the login screen
+
+### **Weather Features**
 
 1. **Search for a City**
    - Type a city name in the search bar
@@ -217,12 +313,53 @@ REACT_APP_REFRESH_INTERVAL=30000
    - Switch between Celsius and Fahrenheit
    - Preference is saved automatically
 
+5. **View Search History**
+   - See your recent searches below the search bar
+   - Click any previous search to reload that city's weather
+
 ### **Advanced Features**
 
 - **Auto-refresh** - Weather updates every 30 seconds automatically
 - **5-Day Forecast** - Scroll down to see extended predictions
 - **Error Recovery** - Click retry if any errors occur
 - **Responsive Design** - Works perfectly on all device sizes
+
+---
+
+## 🧪 Testing the Authentication Flow
+
+### **Test Cases to Try:**
+
+#### **1. Sign Up Flow**
+- Click "Create Account"
+- Fill in: Email, Password, Confirm Password
+- Test validation errors:
+  - Empty fields
+  - Invalid email format
+  - Password too short
+  - Passwords don't match
+- Submit valid form
+- Should redirect to weather dashboard
+
+#### **2. Sign In Flow**  
+- Click "Sign In"
+- Test with invalid credentials
+- Test with valid credentials
+- Should access weather dashboard
+
+#### **3. Weather Dashboard (After Login)**
+- Search for cities
+- Toggle temperature units
+- View user menu (top right)
+- Check search history
+- Sign out
+- Should return to login page
+
+#### **4. Error Handling**
+- Try accessing without login
+- Test network errors
+- Test invalid API keys
+- All errors should be handled gracefully
 
 ---
 
@@ -234,8 +371,10 @@ This project fulfills all the specified assignment requirements:
 - [x] **Create React App** - Modern React development environment
 - [x] **Functional Components** - All components use hooks-based approach
 - [x] **CSS Modules** - Scoped styling with `App.module.css`
+- [x] **Authentication** - Secure user authentication system
 
 ### ✅ **Features & Functionality**
+- [x] **Authentication System** - Complete login/register flow
 - [x] **Home Page Dashboard** - Complete weather dashboard interface
 - [x] **City Search** - Real-time city search with results
 - [x] **Weather Display** - Temperature, humidity, wind speed, conditions
@@ -244,8 +383,10 @@ This project fulfills all the specified assignment requirements:
 - [x] **30-Second Polling** - Automatic data refresh
 - [x] **Error Handling** - Comprehensive error management
 - [x] **Local Storage** - Persistent user preferences
+- [x] **Database Storage** - User data and search history
 
 ### ✅ **Component Structure**
+- [x] **Authentication Components** - Login, register, password reset
 - [x] **SearchInput Component** - Dedicated search functionality
 - [x] **WeatherDisplay Component** - Weather information display
 - [x] **ErrorMessage Component** - Error handling and display
@@ -253,6 +394,7 @@ This project fulfills all the specified assignment requirements:
 
 ### ✅ **State Management**
 - [x] **React Context API** - Global state management
+- [x] **Authentication Context** - User session management
 - [x] **Custom Hooks** - Clean, reusable logic
 
 ### ✅ **Bonus Features**
@@ -261,6 +403,7 @@ This project fulfills all the specified assignment requirements:
 - [x] **Responsive Design** - Mobile-first approach
 - [x] **Geolocation** - Current location weather
 - [x] **Advanced Error Handling** - User-friendly error recovery
+- [x] **Search History** - Record of previous searches
 
 ### ✅ **Code Quality**
 - [x] **Clean Architecture** - Modular, maintainable code
@@ -271,6 +414,12 @@ This project fulfills all the specified assignment requirements:
 ---
 
 ## 🔄 API Integration
+
+### **Supabase Authentication API**
+- User registration and login
+- Session management
+- Password recovery
+- User profiles and preferences
 
 ### **OpenWeatherMap APIs Used**
 
@@ -292,7 +441,7 @@ This project fulfills all the specified assignment requirements:
    - Daily high/low temperatures
    - Weather trends and patterns
 
-3. **Reverse Geocoding API** *(Bonus)*
+3. **Reverse Geocoding API**
    ```javascript
    GET https://api.openweathermap.org/geo/1.0/reverse
    ```
@@ -301,6 +450,7 @@ This project fulfills all the specified assignment requirements:
 
 ### **Error Handling Strategy**
 
+- **Authentication Errors** - Clear feedback on login/signup issues
 - **Network Errors** - Retry mechanism with exponential backoff
 - **API Rate Limits** - User-friendly rate limit notifications
 - **Invalid Cities** - Helpful suggestions and error messages
@@ -309,6 +459,12 @@ This project fulfills all the specified assignment requirements:
 ---
 
 ## 🎨 UI/UX Features
+
+### **Authentication UI**
+- **Glassmorphism Login** - Beautiful, modern authentication screens
+- **Form Validation** - Real-time feedback on input errors
+- **Success/Error States** - Clear visual feedback on actions
+- **Smooth Transitions** - Elegant animations between auth states
 
 ### **Design System**
 - **Color Palette** - Purple-blue gradient with glassmorphism accents
@@ -329,7 +485,7 @@ This project fulfills all the specified assignment requirements:
 
 ---
 
-##  Responsive Design
+## 📱 Responsive Design
 
 ### **Breakpoints**
 - **Desktop** - 1200px+ (Full feature layout)
@@ -341,6 +497,7 @@ This project fulfills all the specified assignment requirements:
 - **Readable Text** - Optimized font sizes for mobile screens
 - **Simplified Navigation** - Streamlined mobile interface
 - **Fast Loading** - Optimized images and minimal JavaScript
+- **Mobile Auth Forms** - Optimized for small screens
 
 ### **Progressive Enhancement**
 - **Core Functionality** - Works without JavaScript
@@ -386,35 +543,34 @@ vercel --prod
 2. Upload the `build` folder to Netlify
 3. Set environment variables in Netlify dashboard
 
-### **Deploy to GitHub Pages**
-```bash
-npm install --save-dev gh-pages
-
-# Add to package.json scripts:
-# "predeploy": "npm run build",
-# "deploy": "gh-pages -d build"
-
-npm run deploy
-```
-
 ### **Environment Variables for Production**
 Set these variables in your deployment platform:
 - `REACT_APP_WEATHER_API_KEY`
-- `REACT_APP_WEATHER_BASE_URL` (optional)
+- `REACT_APP_SUPABASE_URL`
+- `REACT_APP_SUPABASE_ANON_KEY`
 
 ---
 
 ## 🧪 Testing
 
-### **Manual Testing Checklist**
-- [ ] Search functionality works with various city names
-- [ ] Weather data displays correctly for different locations
-- [ ] Unit conversion (°C/°F) functions properly
-- [ ] Geolocation feature works when permitted
-- [ ] Error handling displays appropriate messages
-- [ ] Auto-refresh updates data every 30 seconds
-- [ ] Local storage saves preferences correctly
-- [ ] Responsive design works on all screen sizes
+### **Authentication Testing**
+- [x] User registration flow
+- [x] Login with valid credentials
+- [x] Login with invalid credentials
+- [x] Password reset functionality
+- [x] Session persistence
+- [x] Protected routes
+- [x] Logout functionality
+
+### **Weather Feature Testing**
+- [x] Search functionality with various city names
+- [x] Weather data display for different locations
+- [x] Unit conversion (°C/°F) functionality
+- [x] Geolocation feature
+- [x] Error handling for various scenarios
+- [x] Auto-refresh functionality
+- [x] Local storage for preferences
+- [x] Responsive design on all screen sizes
 
 ### **Browser Compatibility**
 - ✅ Chrome 90+
@@ -436,14 +592,8 @@ We welcome contributions to improve the Weather Dashboard! Here's how you can he
 4. **Test** your changes thoroughly
 5. **Submit** a pull request with a clear description
 
-### **Contribution Guidelines**
-- Follow the existing code style and conventions
-- Add comments for complex logic
-- Update documentation for new features
-- Test on multiple browsers and devices
-- Ensure accessibility standards are maintained
-
 ### **Areas for Contribution**
+- 🔒 Authentication enhancements
 - 🐛 Bug fixes and error handling improvements
 - ✨ New features and enhancements
 - 🎨 UI/UX improvements and animations
@@ -482,6 +632,7 @@ copies or substantial portions of the Software.
 ## 🙏 Acknowledgments
 
 - **OpenWeatherMap** - For providing free weather data API
+- **Supabase** - For the excellent authentication platform
 - **Lucide React** - For beautiful, customizable icons
 - **React Team** - For the amazing React framework
 - **Create React App** - For the excellent development environment
@@ -490,17 +641,10 @@ copies or substantial portions of the Software.
 
 ---
 
-## 📊 Project Stats
-
-![GitHub repo size](https://img.shields.io/github/repo-size/yourusername/weather-dashboard)
-![GitHub last commit](https://img.shields.io/github/last-commit/yourusername/weather-dashboard)
-![GitHub issues](https://img.shields.io/github/issues/yourusername/weather-dashboard)
-![GitHub stars](https://img.shields.io/github/stars/yourusername/weather-dashboard)
-
----
-
 ## 🔮 Future Enhancements
 
+- [ ] **Social Authentication** - Login with Google, GitHub, etc.
+- [ ] **Two-Factor Authentication** - Enhanced security option
 - [ ] **Weather Maps** - Interactive weather radar and satellite maps
 - [ ] **Historical Data** - Weather trends and historical comparisons
 - [ ] **Weather Alerts** - Push notifications for severe weather
@@ -518,12 +662,12 @@ DEMO LINK : https://weather-app-dun-gamma-77.vercel.app/
 
 **Found a bug? [Create an issue](https://github.com/yourusername/weather-dashboard/issues)**
 
-** Have a feature request? [Start a discussion](https://github.com/yourusername/weather-dashboard/discussions)**
+**Have a feature request? [Start a discussion](https://github.com/yourusername/weather-dashboard/discussions)**
 
 ---
 
-**Built with  using React.js and modern web technologies**
+**Built with ❤️ using React.js and modern web technologies**
 
-*Last updated: December 2024*
+*Last updated: May 2025*
 
 </div>
